@@ -75,6 +75,7 @@ document.onkeydown = function (event) {
             }
             break;
         case 188: // ,
+        case 190: // .
             changePinyinDisplay(nowPinyinDisplay === PINYINDISPLAY.show ? '不显示' : '显示');
             document.getElementById('pinyinDisplaySelect')[nowPinyinDisplay].selected = true;
             break;
