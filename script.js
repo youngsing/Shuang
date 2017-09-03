@@ -45,6 +45,7 @@ window.onload = function () {
     if (getCookie('pinyinDisplay') !== '') {
         var pinyinDisplay = Number(getCookie('pinyinDisplay'));
         nowPinyinDisplay = pinyinDisplay;
+        changePinyinDisplay(nowPinyinDisplay === PINYINDISPLAY.show ? '不显示' : '显示');
         document.getElementById('pinyinDisplaySelect')[pinyinDisplay].selected = true;
     }
     nowScheme = getSchemeByPair(nowSchemeId, nowPair);
@@ -54,24 +55,28 @@ window.onload = function () {
 
 document.onkeydown = function (event) {
     switch (event.keyCode) {
-        case 37:
+        case 37: // Left Arrow
             document.getElementById('a1').focus();
             break;
-        case 39:
+        case 39: // Right Arrow
             document.getElementById('a2').focus();
             break;
-        case 8:
+        case 8: // Backspace
             if (document.getElementById('a2').value === '') {
                 redo();
             }
             break;
-        case 13:
-        case 32:
+        case 13: // Enter
+        case 32: // Spacebar
             if (check()) {
                 next();
             } else {
                 redo();
             }
+            break;
+        case 188: // ,
+            changePinyinDisplay(nowPinyinDisplay === PINYINDISPLAY.show ? '不显示' : '显示');
+            document.getElementById('pinyinDisplaySelect')[nowPinyinDisplay].selected = true;
             break;
     }
 };
@@ -230,12 +235,12 @@ function changeMode(x) {
 function changePinyinDisplay(x) {
     if (x === '显示') {
         nowPinyinDisplay = PINYINDISPLAY.show;
-        document.getElementById('q1').hidden = false;
-        document.getElementById('q2').hidden = false;
+        document.getElementById('q1').style.display = 'block';
+        document.getElementById('q2').style.display = 'block';
     } else if (x === '不显示') {
         nowPinyinDisplay = PINYINDISPLAY.hide;
-        document.getElementById('q1').hidden = true;
-        document.getElementById('q2').hidden = true;
+        document.getElementById('q1').style.display = 'none';
+        document.getElementById('q2').style.display = 'none';
     }
     setCookie('pinyinDisplay', nowPinyinDisplay);
 }
