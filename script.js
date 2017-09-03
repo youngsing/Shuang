@@ -45,7 +45,7 @@ window.onload = function () {
     if (getCookie('pinyinDisplay') !== '') {
         var pinyinDisplay = Number(getCookie('pinyinDisplay'));
         nowPinyinDisplay = pinyinDisplay;
-        changePinyinDisplay(nowPinyinDisplay === PINYINDISPLAY.show ? '不显示' : '显示');
+        changePinyinDisplay(nowPinyinDisplay === PINYINDISPLAY.show ? '显示' : '不显示');
         document.getElementById('pinyinDisplaySelect')[pinyinDisplay].selected = true;
     }
     nowScheme = getSchemeByPair(nowSchemeId, nowPair);
